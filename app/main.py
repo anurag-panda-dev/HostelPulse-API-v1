@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-
+from workers import WorkerEntrypoint
+import asgi
 from app.routers import (
     attendance,
     auth,
@@ -38,3 +39,7 @@ app.include_router(messages.router)
 app.include_router(payments.router)
 app.include_router(notifications.router)
 app.include_router(rooms.router)
+
+class Default(WorkerEntrypoint):
+    async def fetch(self, request):
+        return await asgi.fetch(app, request, self.env)
