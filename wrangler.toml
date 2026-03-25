@@ -1,0 +1,4 @@
+name = "hostelpulse-api"
+main = "app/main.py"
+compatibility_date = "2024-04-01"
+compatibility_flags = ["python_workers"]
